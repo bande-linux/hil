@@ -1,0 +1,10 @@
+{
+    "device": "/dev/cu.usbmodemP_01",
+    "serial": "",
+    "linux_py": "/path/to/bootloader/proxyclient/tools/linux.py",
+    "python": "/path/to/venv/bin/python3",
+    "dtb": "/path/to/t8112-j473.dtb",
+    "runs_dir": "/path/to/hil-runs",
+    "lease_ttl": 1800,
+    "max_timeout": 900
+}
