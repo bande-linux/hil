@@ -1,0 +1,35 @@
+name: test
+
+on:
+  push:
+    branches: [ main, 'prep/**' ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: [self-hosted, unbound]
+    timeout-minutes: 15
+
+    env:
+      HAVE_TOKEN: ${{ secrets.SUBMODULE_TOKEN != '' }}
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/checkout@v7
+        if: env.HAVE_TOKEN == 'true'
+        with:
+          repository: unbound-linux/bootloader
+          token: ${{ secrets.SUBMODULE_TOKEN }}
+          path: bootloader
+
+      - name: Set up the proxyclient
+        if: env.HAVE_TOKEN == 'true'
+        run: |
+          python3 -m venv /tmp/hil-venv
+          /tmp/hil-venv/bin/pip install -q -r bootloader/requirements.txt
+          echo "PROXYCLIENT=$PWD/bootloader/proxyclient" >> "$GITHUB_ENV"
+          echo "PYTHON=/tmp/hil-venv/bin/python3" >> "$GITHUB_ENV"
+
+      - name: Test against the stub device
+        run: ${PYTHON:-python3} -m unittest -v tests.test_hil
