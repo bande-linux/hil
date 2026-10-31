@@ -88,7 +88,7 @@ def handle(client, msg):
     method = msg.get("method")
     if method == "initialize":
         return {"protocolVersion": PROTOCOL_VERSION, "capabilities": {"tools": {}},
-                "serverInfo": {"name": "unbound-hil", "version": "0.1.0"}}
+                "serverInfo": {"name": "bande-hil", "version": "0.1.0"}}
     if method == "ping":
         return {}
     if method == "tools/list":

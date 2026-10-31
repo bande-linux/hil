@@ -1,4 +1,4 @@
-# Unbound Linux hardware-in-the-loop host
+# Bande Linux hardware-in-the-loop host
 
 Runs on the Mac that has the target Mac on USB-C. `hil.daemon` owns the
 device: one lease at a time, a boot runs the bootloader's

@@ -187,7 +187,7 @@ class ServiceRuns(Bench):
         token = s.acquire("test")["token"]
         run_id = s.boot(token, str(self.kernel), str(self.dtb), timeout=3)["run"]
         time.sleep(1)
-        os.write(ser_master, b"[    0.000000] Linux version 7.3.0-unbound\n")
+        os.write(ser_master, b"[    0.000000] Linux version 7.3.0-bande\n")
         run = self.wait(s, run_id)
         os.close(ser_master)
         os.close(ser_slave)
