@@ -2,7 +2,7 @@ name: test
 
 on:
   push:
-    branches: [ main, 'prep/**' ]
+    tags: ['v*']
   workflow_dispatch:
 
 jobs:
